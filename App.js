@@ -23,7 +23,7 @@ const App = () => {
     const obtenerProductosStorage = async () => {
       try {
         const productosStorage = await AsyncStorage.getItem("productos");
-        if (productosStorage) setCitas(JSON.parse(productosStorage));
+        if (productosStorage) setProductos(JSON.parse(productosStorage));
       } catch (error) {
         console.log(error);
       }

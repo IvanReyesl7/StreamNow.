@@ -25,7 +25,7 @@ const Formulario = ({
     
   
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-    const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+
   
     const showDatePicker = () => {
       setDatePickerVisibility(true);
@@ -39,14 +39,6 @@ const Formulario = ({
       const opciones = { year: "numeric", month: "long", day: "2-digit" };
       guardarFecha(date.toLocaleDateString("es-SV", opciones));
       hideDatePicker();
-    };
-  
-    const showTimePicker = () => {
-      setTimePickerVisibility(true);
-    };
-  
-    const hideTimePicker = () => {
-      setTimePickerVisibility(false);
     };
   
   
@@ -83,7 +75,7 @@ const Formulario = ({
   
     return (
       <>
-        <ScrollView style={styles.formulario}>
+        <ScrollView style={styles.formulario} scrollEnabled={false}>
           <View>
             <Text style={styles.label}>Pieza:</Text>
             <TextInput
@@ -142,6 +134,7 @@ const Formulario = ({
       backgroundColor: "#FFF",
       paddingHorizontal: 20,
       paddingVertical: 10,
+      height: 2000,
     },
     label: {
       fontWeight: "bold",
