@@ -17,33 +17,31 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const App = () => {
   const [productos, setProductos] = useState([]);
-  const [showForm, showSaveForm] = useState(false);
+  const [mostrarForm, guardarMostrarForm] = useState(false);
 
   useEffect(() => {
-    const getProductosStorage = async () => {
+    const obtenerProductosStorage = async () => {
       try {
         const productosStorage = await AsyncStorage.getItem("productos");
-        if (productosStorage) setProductos(JSON.parse(productosStorage));
-      } catch (e) {
-        console.log(e);
+        if (productosStorage) setCitas(JSON.parse(productosStorage));
+      } catch (error) {
+        console.log(error);
       }
     };
-    getProductosStorage();
+    obtenerProductosStorage();
   }, []);
 
   const eliminarProducto = (id) => {
-    const productosFiltrados = productos.filter(
-      (producto) => producto.id !== id
-    );
-    setCitas(productosFiltrados);
-    saveProductosStorage(JSON.stringify(productos));
+    const productosFiltrados = productos.filter((producto) => producto.id !== id);
+    setProductos(productosFiltrados);
+    guardarProductosStorage(JSON.stringify(productosFiltrados));
   };
 
-  const mostrarForm = () => showSaveForm(!showForm);
+  const mostrarFormulario = () => guardarMostrarForm(!mostrarForm);
 
   const cerrarTeclado = () => Keyboard.dismiss();
 
-  const saveProductosStorage = async (productosJSON) => {
+  const guardarProductosStorage = async (productosJSON) => {
     try {
       await AsyncStorage.setItem("productos", productosJSON);
     } catch (error) {
@@ -53,22 +51,18 @@ const App = () => {
 
   return (
     <>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          cerrarTeclado();
-        }}
-      >
+      <TouchableWithoutFeedback onPress={() => cerrarTeclado()}>
         <SafeAreaView>
           <View style={styles.contenedor}>
             <Text style={styles.titulo}>Administrador de Productos</Text>
             <View>
               <TouchableHighlight
-                onPress={() => mostrarForm()}
+                onPress={() => mostrarFormulario()}
                 style={styles.btnMostrarForm}
               >
                 <View>
                   <Text style={styles.textoMostrarForm}>
-                    {mostrarForm ? "Cancelar Crear producto" : "Crear Nuevo Producto"}
+                    {mostrarForm ? "Cancelar Crear Producto" : "Crear Nuevo Producto"}
                   </Text>
                 </View>
               </TouchableHighlight>
@@ -81,8 +75,8 @@ const App = () => {
                 <Formulario
                   productos={productos}
                   setProductos={setProductos}
-                  showSaveForm={showSaveForm}
-                  saveProductosStorage={saveProductosStorage}
+                  guardarMostrarForm={guardarMostrarForm}
+                  guardarProductosStorage={guardarProductosStorage}
                 />
               </>
             ) : (

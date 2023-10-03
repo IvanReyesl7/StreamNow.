@@ -11,12 +11,12 @@ const Producto = ({ item, eliminarProducto }) => {
     <View style={styles.producto}>
       <View>
         <Text style={styles.label}>Pieza:</Text>
-        <Text style={styles.label}>{}</Text>
+        <Text style={styles.label}>{item.pieza}</Text>
       </View>
 
       <View>
         <Text style={styles.label}>Fecha de cambio:</Text>
-        <Text style={styles.label}>{}</Text>
+        <Text style={styles.label}>{item.fecha}</Text>
       </View>
       <View>
         <TouchableHighlight
@@ -59,3 +59,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default Producto;
