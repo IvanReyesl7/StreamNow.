@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
+import { View, Text, TouchableHighlight, StyleSheet,Modal,Button} from "react-native";
 import React, { useState } from "react";
 
 const Producto = ({ item, eliminarProducto }) => {
@@ -7,8 +7,29 @@ const Producto = ({ item, eliminarProducto }) => {
     eliminarProducto(id);
   };
 
+  const [modalVisibleProducto, setModalVisibleProducto] = useState(false);
+
   return (
     <View style={styles.producto}>
+
+        <Modal transparent={true} animationType='slide' visible={modalVisibleProducto} onRequestClose={() =>{
+          alert("Modal has been closed.");
+        }}>
+          <View style={styles.vistaModal}>
+            <View style={styles.Modal}>
+              <Text style={styles.label}>Pieza</Text>
+              <Text style={styles.subtitulo}>{item.pieza}</Text>
+              <Text style={styles.label}>Marca:</Text>
+              <Text style={styles.subtitulo}>{item.marca}</Text>
+              <Text style={styles.label}>N° de Serie:</Text>
+              <Text style={styles.subtitulo}>{item.numeroSerie}</Text>
+              <Text style={styles.label}>Fecha De Cambio:</Text>
+              <Text style={styles.subtitulo}>{item.fecha}</Text>
+              <Button title="cerrar" onPress={()=>{setModalVisibleProducto(!modalVisibleProducto)}}></Button>
+            </View>
+          </View>
+        </Modal>
+
       <View>
         <Text style={styles.label}>Pieza:</Text>
         <Text style={styles.label}>{item.pieza}</Text>
@@ -18,6 +39,16 @@ const Producto = ({ item, eliminarProducto }) => {
         <Text style={styles.label}>Fecha de cambio:</Text>
         <Text style={styles.label}>{item.fecha}</Text>
       </View>
+
+      <View>
+        <TouchableHighlight
+          onPress={() => {setModalVisibleProducto(!modalVisibleProducto)}}
+          style={styles.btnInfo}
+        >
+          <Text style={styles.textoEliminar}>Informacion &times;</Text>
+        </TouchableHighlight>
+      </View>
+
       <View>
         <TouchableHighlight
           onPress={() => textoEliminar(item.id)}
@@ -26,6 +57,8 @@ const Producto = ({ item, eliminarProducto }) => {
           <Text style={styles.textoEliminar}>Eliminar &times;</Text>
         </TouchableHighlight>
       </View>
+
+      
     </View>
   );
 };
@@ -53,11 +86,30 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     marginVertical: 10,
   },
+  btnInfo: {
+    padding: 10,
+    backgroundColor: "green",
+    marginVertical: 10,
+  },
   textoEliminar: {
     color: "#FFF",
     fontWeight: "bold",
     textAlign: "center",
+  },vistaModal:{
+    backgroundColor: "#000000aa",
+    flex: 1,
   },
+  Modal:{
+    backgroundColor: "#fff",
+    margin:50,
+    padding:40,
+    borderRadius: 10,
+  },
+  subtitulo:{
+    fontWeight: "bold",
+    fontSize:14,
+    justifyContent: "center",
+  }
 });
 
 export default Producto;
