@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     color: "#FFF",
+    paddingTop: 20,
     marginTop: Platform.OS === "ios" ? 40 : 20,
     marginBottom: 20,
     fontSize: 24,
