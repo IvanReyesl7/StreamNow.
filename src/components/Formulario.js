@@ -92,8 +92,9 @@ const Formulario = ({
             />
           </View>
           <View>
-            <Text style={styles.label}>Fecha:</Text>
-            <Button title="Seleccionar Fecha" onPress={showDatePicker} />
+            <Text style={styles.label}>Fecha:</Text> 
+            <Text style={styles.fecha}>{fecha}</Text>
+            <Button color={"#1880E9"} title="Seleccionar Fecha" onPress={showDatePicker} />
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
@@ -104,7 +105,7 @@ const Formulario = ({
               cancelTextIOS="Cancelar"
               confirmTextIOS="Confirmar"
             />
-            <Text>{fecha}</Text>
+            
           </View>
         
           <View>
@@ -125,9 +126,7 @@ const Formulario = ({
   const styles = StyleSheet.create({
     formulario: {
       backgroundColor: "#FFF",
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      height: 2000,
+      paddingHorizontal: 30,
     },
     label: {
       fontWeight: "bold",
@@ -136,7 +135,7 @@ const Formulario = ({
     },
     input: {
       marginTop: 10,
-      height: 50,
+      height: 40,
       borderColor: "#e1e1e1",
       borderWidth: 1,
       borderStyle: "solid",
@@ -145,13 +144,20 @@ const Formulario = ({
       padding: 10,
       backgroundColor: "#C70039",
       marginVertical: 10,
+      borderRadius: 10,
     },
     textoSubmit: {
       color: "#fff",
       fontWeight: "bold",
       textAlign: "center",
+      borderRadius: 10,
       
     },
+    fecha:{
+      fontSize: 20,
+      paddingBottom: 20,
+      paddingTop: 10,
+    }
   });
 
 export default Formulario;

@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight, StyleSheet,Modal,Button} from "react-native";
+import { View, Text, TouchableHighlight, StyleSheet,Modal,Button, Pressable, Touchable} from "react-native";
 import React, { useState } from "react";
 
 const Producto = ({ item, eliminarProducto }) => {
@@ -25,7 +25,7 @@ const Producto = ({ item, eliminarProducto }) => {
               <Text style={styles.label}>N° de Serie:</Text>
               <Text style={styles.subtitulo}>{"S"+item.numeroSerie}</Text>
               <Text style={styles.label}>Fecha De Cambio:</Text>
-              <Text style={styles.subtitulo}>{item.fecha}</Text>
+              <Text style={styles.fecha}>{item.fecha}</Text>
               <Button title="cerrar" onPress={()=>{setModalVisibleProducto(!modalVisibleProducto)}}></Button>
             </View>
           </View>
@@ -33,12 +33,12 @@ const Producto = ({ item, eliminarProducto }) => {
 
       <View>
         <Text style={styles.label}>Pieza:</Text>
-        <Text style={styles.label}>{item.pieza}</Text>
+        <Text style={styles.subtitulo}>{item.pieza}</Text>
       </View>
 
       <View>
         <Text style={styles.label}>Fecha de cambio:</Text>
-        <Text style={styles.label}>{item.fecha}</Text>
+        <Text style={styles.subtitulo}>{item.fecha}</Text>
       </View>
 
       <View>
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     marginTop: 20,
+    padding: 4.5,
   },
   labelHeader: {
     fontWeight: "bold",
@@ -91,17 +92,21 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "red",
     marginVertical: 10,
+    borderRadius: 10,
   },
   btnInfo: {
     padding: 10,
     backgroundColor: "#1880E9",
-    marginVertical: 10,
+    marginVertical: 20,
+    borderRadius: 10,
+
   },
   textoEliminar: {
     color: "#FFF",
     fontWeight: "bold",
     textAlign: "center",
-  },vistaModal:{
+  },
+  vistaModal:{
     backgroundColor: "#000000aa",
     flex: 1,
   },
@@ -113,7 +118,14 @@ const styles = StyleSheet.create({
   },
   subtitulo:{
     fontWeight: "bold",
-    fontSize:14,
+    fontSize:19.6,
+    padding: 7,
+  },
+  fecha:{
+    padding: 12,
+    paddingLeft: 0,
+    fontSize: 19.6,
+    fontWeight: "bold",
   }
 });
 
