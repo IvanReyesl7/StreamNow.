@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  TouchableHighlight,
-  Alert,
-  ScrollView,
+  Text, StyleSheet, View, TextInput, Button, TouchableHighlight, Alert, ScrollView,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import shortid from "react-id-generator";
@@ -157,6 +150,7 @@ const Formulario = ({
       color: "#fff",
       fontWeight: "bold",
       textAlign: "center",
+      
     },
   });
 

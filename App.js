@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Platform,
+  Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Platform,
 } from "react-native";
 
 import Producto from "./src/components/Producto";
 import Formulario from "./src/components/Formulario";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+ 
 const App = () => {
   const [productos, setProductos] = useState([]);
   const [mostrarForm, guardarMostrarForm] = useState(false);

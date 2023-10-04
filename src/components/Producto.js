@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
   },
   labelHeader: {
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 21,
     marginTop: 20,
-  },
+  } ,
   texto: {
     fontSize: 18,
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   btnInfo: {
     padding: 10,
-    backgroundColor: "green",
+    backgroundColor: "#1880E9",
     marginVertical: 10,
   },
   textoEliminar: {
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   subtitulo:{
     fontWeight: "bold",
     fontSize:14,
-    justifyContent: "center",
   }
 });
 
