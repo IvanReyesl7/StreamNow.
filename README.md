@@ -12,6 +12,10 @@
 - [@Jose Carlos Sequeira Alvarado SA211247](https://github.com/Sequeiraa)
 
 
+## Video
+
+https://youtu.be/wSB0U9hw_iI
+
 ## Instalación
 
 Iniciar Git en bash
