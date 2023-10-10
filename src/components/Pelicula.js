@@ -1,10 +1,10 @@
 import { View, Text, TouchableHighlight, StyleSheet,Modal,Button, Pressable, Touchable} from "react-native";
 import React, { useState } from "react";
 
-const Producto = ({ item, eliminarProducto }) => {
+const Producto = ({ item, eliminarPelicula }) => {
   const textoEliminar = (id) => {
     console.log("eliminando..." + id);
-    eliminarProducto(id);
+    eliminarPelicula(id);
   };
 
   const [modalVisibleProducto, setModalVisibleProducto] = useState(false);
