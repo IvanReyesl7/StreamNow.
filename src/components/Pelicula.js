@@ -17,28 +17,28 @@ const Producto = ({ item, eliminarProducto }) => {
         }}>
           <View style={styles.vistaModal}>
             <View style={styles.Modal}>
-              <Text style={styles.labelHeader}>Detalles Del Producto</Text>
-              <Text style={styles.label}>Pieza:</Text>
-              <Text style={styles.subtitulo}>{item.pieza}</Text>
-              <Text style={styles.label}>Marca:</Text>
-              <Text style={styles.subtitulo}>{item.marca}</Text>
-              <Text style={styles.label}>N° de Serie:</Text>
-              <Text style={styles.subtitulo}>{"S"+item.numeroSerie}</Text>
-              <Text style={styles.label}>Fecha De Cambio:</Text>
-              <Text style={styles.fecha}>{item.fecha}</Text>
+              <Text style={styles.labelHeader}>Detalles De La Pelicula</Text>
+              <Text style={styles.label}>Nombre de la pelicula:</Text>
+              <Text style={styles.subtitulo}>{item.nombre}</Text>
+              <Text style={styles.label}>Genero:</Text>
+              <Text style={styles.subtitulo}>{item.genero}</Text>
+              <Text style={styles.label}>Duracion:</Text>
+              <Text style={styles.subtitulo}>{item.duracion+"min"}</Text>
+              <Text style={styles.label}>Fecha De Estreno:</Text>
+              <Text style={styles.fecha}>{item.estreno}</Text>
               <Button title="cerrar" onPress={()=>{setModalVisibleProducto(!modalVisibleProducto)}}></Button>
             </View>
           </View>
         </Modal>
 
       <View>
-        <Text style={styles.label}>Pieza:</Text>
-        <Text style={styles.subtitulo}>{item.pieza}</Text>
+        <Text style={styles.label}>Pelicula:</Text>
+        <Text style={styles.subtitulo}>{item.nombre}</Text>
       </View>
 
       <View>
-        <Text style={styles.label}>Fecha de cambio:</Text>
-        <Text style={styles.subtitulo}>{item.fecha}</Text>
+        <Text style={styles.label}>Genero:</Text>
+        <Text style={styles.subtitulo}>{item.genero}</Text>
       </View>
 
       <View>
@@ -46,7 +46,7 @@ const Producto = ({ item, eliminarProducto }) => {
           onPress={() => {setModalVisibleProducto(!modalVisibleProducto)}}
           style={styles.btnInfo}
         >
-          <Text style={styles.textoEliminar}>Información Del Producto</Text>
+          <Text style={styles.textoEliminar}>Información De la Pelicula</Text>
         </TouchableHighlight>
       </View>
 

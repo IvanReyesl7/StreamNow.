@@ -6,15 +6,15 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import shortid from "react-id-generator";
 
 const Formulario = ({
-    productos,
-    setProductos,
+    peliculas,
+    setPeliculas,
     guardarMostrarForm,
-    guardarProductosStorage,
+    guardarPeliculasStorage,
   }) => {
-    const [pieza, guardarPieza] = useState("");
-    const [marca, guardarMarca] = useState("");
-    const [numeroSerie, guardarNumeroSerie] = useState("");
-    const [fecha, guardarFecha] = useState("");
+    const [nombre, guardarNombre] = useState("");
+    const [genero, guardarGenero] = useState("");
+    const [duracion, guardarDuracion] = useState("");
+    const [estreno, guardarEstreno] = useState("");
     
   
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -30,70 +30,70 @@ const Formulario = ({
   
     const confirmarFecha = (date) => {
       const opciones = { year: "numeric", month: "long", day: "2-digit" };
-      guardarFecha(date.toLocaleDateString("es-SV", opciones));
+      guardarEstreno(date.toLocaleDateString("es-SV", opciones));
       hideDatePicker();
     };
   
   
     const crearNuevoProducto = () => {
       if (
-        pieza.trim() === "" ||
-        marca.trim() === "" ||
-        numeroSerie.trim() === "" ||
-        fecha.trim() === ""
+        nombre.trim() === "" ||
+        genero.trim() === "" ||
+        duracion.trim() === "" ||
+        estreno.trim() === ""
       ) {
         mostrarAlerta();
         return;
       }
   
-      const producto = { pieza, marca, numeroSerie, fecha };
-      producto.id = shortid();
+      const pelicula = { nombre, genero, duracion, estreno };
+      pelicula.id = shortid();
   
-      const productosNuevo = [...productos, producto];
-      setProductos(productosNuevo);
+      const peliculasNuevo = [...peliculas, pelicula];
+      setPeliculas(peliculasNuevo);
   
-      guardarProductosStorage(JSON.stringify(productosNuevo));
+      guardarPeliculasStorage(JSON.stringify(peliculasNuevo));
   
       guardarMostrarForm(false);
   
-      guardarPieza("");
-      guardarMarca("");
-      guardarNumeroSerie("");
-      guardarFecha("");
+      guardarNombre("");
+      guardarGenero("");
+      guardarDuracion("");
+      guardarEstreno("");
     };
   
     const mostrarAlerta = () => {
-      Alert.alert("Error", "Todos los campos son obligatorios {" + pieza +"}", [{ text: "OK" }]);
+      Alert.alert("Error", "Todos los campos son obligatorios {" + nombre +"}", [{ text: "OK" }]);
     };
   
     return (
       <>
-        <ScrollView style={styles.formulario} scrollEnabled={false}>
+        <ScrollView style={styles.formulario} vertical>
           <View>
-            <Text style={styles.label}>Pieza:</Text>
+            <Text style={styles.label}>Nombre:</Text>
             <TextInput
               style={styles.input}
-              onChangeText={(texto) => guardarPieza(texto)}
+              onChangeText={(texto) => guardarNombre(texto)}
             />
           </View>
           <View>
-            <Text style={styles.label}>Marca:</Text>
+            <Text style={styles.label}>Genero de la pelicula:</Text>
             <TextInput
               style={styles.input}
-              onChangeText={(texto) => guardarMarca(texto)}
+              onChangeText={(texto) => guardarGenero(texto)}
             />
           </View>
           <View>
-            <Text style={styles.label}>N° de Serie:</Text>
+            <Text style={styles.label}>Duracion(en minutos):</Text>
             <TextInput
               style={styles.input}
-              onChangeText={(texto) => guardarNumeroSerie(texto)}
+              onChangeText={(texto) => guardarDuracion(texto)}
               keyboardType="numeric"
             />
           </View>
           <View>
-            <Text style={styles.label}>Fecha:</Text> 
-            <Text style={styles.fecha}>{fecha}</Text>
+            <Text style={styles.label}>Fecha de Estreno:</Text> 
+            <Text style={styles.fecha}>{estreno}</Text>
             <Button color={"#1880E9"} title="Seleccionar Fecha" onPress={showDatePicker} />
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
@@ -114,7 +114,7 @@ const Formulario = ({
               style={styles.btnSubmit}
             >
               <View>
-              <Text style={styles.textoSubmit}>Crear Nuevo Producto</Text>
+              <Text style={styles.textoSubmit}>Listar Nueva Pelicula</Text>
               </View>
             </TouchableHighlight>
           </View>
@@ -159,5 +159,6 @@ const Formulario = ({
       paddingTop: 10,
     }
   });
+
 
 export default Formulario;

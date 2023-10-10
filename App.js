@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from "react";
 import {
-  Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Platform,
+  Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Platform,ScrollView
 } from "react-native";
 
-import Producto from "./src/components/Producto";
+import Pelicula from "./src/components/Pelicula";
 import Formulario from "./src/components/Formulario";
 import AsyncStorage from "@react-native-async-storage/async-storage";
  
 const App = () => {
-  const [productos, setProductos] = useState([]);
+  const [peliculas, setPeliculas] = useState([]);
   const [mostrarForm, guardarMostrarForm] = useState(false);
 
   useEffect(() => {
-    const obtenerProductosStorage = async () => {
+    const obtenerPeliculasStorage = async () => {
       try {
-        const productosStorage = await AsyncStorage.getItem("productos");
-        if (productosStorage) setProductos(JSON.parse(productosStorage));
+        const peliculasStorage = await AsyncStorage.getItem("peliculas");
+        if (peliculasStorage) setPeliculas(JSON.parse(peliculasStorage));
       } catch (error) {
         console.log(error);
       }
     };
-    obtenerProductosStorage();
+    obtenerPeliculasStorage();
   }, []);
 
-  const eliminarProducto = (id) => {
-    const productosFiltrados = productos.filter((producto) => producto.id !== id);
-    setProductos(productosFiltrados);
-    guardarProductosStorage(JSON.stringify(productosFiltrados));
+  const eliminarPelicula = (id) => {
+    const peliculasFiltrados = peliculas.filter((pelicula) => pelicula.id !== id);
+    setPeliculas(peliculasFiltrados);
+    guardarPeliculasStorage(JSON.stringify(peliculasFiltrados));
   };
 
   const mostrarFormulario = () => guardarMostrarForm(!mostrarForm);
 
   const cerrarTeclado = () => Keyboard.dismiss();
 
-  const guardarProductosStorage = async (productosJSON) => {
+  const guardarPeliculasStorage = async (peliculasJSON) => {
     try {
-      await AsyncStorage.setItem("productos", productosJSON);
+      await AsyncStorage.setItem("peliculas", peliculasJSON);
     } catch (error) {
       console.log("error");
     }
@@ -46,7 +46,7 @@ const App = () => {
       <TouchableWithoutFeedback onPress={() => cerrarTeclado()}>
         <SafeAreaView>
           <View style={styles.contenedor}>
-            <Text style={styles.titulo}>Administrador de Productos</Text>
+            <Text style={styles.titulo}>StreamNow</Text>
             <View>
               <TouchableHighlight
                 onPress={() => mostrarFormulario()}
@@ -54,7 +54,7 @@ const App = () => {
               >
                 <View>
                   <Text style={styles.textoMostrarForm}>
-                    {mostrarForm ? "Cancelar Crear Producto" : "Crear Nuevo Producto"}
+                    {mostrarForm ? "Cancelar Listar Pelicula" : "Listar Nueva Pelicula"}
                   </Text>
                 </View>
               </TouchableHighlight>
@@ -63,28 +63,30 @@ const App = () => {
           <View style={styles.contenido}>
             {mostrarForm ? (
               <>
-                <Text style={styles.titulo}>Crear Nuevo Producto</Text>
+                <Text style={styles.titulo}>Registrar Nueva Pelicula</Text>
                 <Formulario
-                  productos={productos}
-                  setProductos={setProductos}
+                  peliculas={peliculas}
+                  setPeliculas={setPeliculas}
                   guardarMostrarForm={guardarMostrarForm}
-                  guardarProductosStorage={guardarProductosStorage}
+                  guardarPeliculasStorage={guardarPeliculasStorage}
                 />
               </>
             ) : (
               <>
                 <Text style={styles.titulo}>
-                  {productos.length > 0
-                    ? "Administra tus productos"
-                    : "No hay productos, agrege uno"}
+                  {peliculas.length > 0
+                    ? "Administra tus peliculas"
+                    : "No hay peliculas, agrege una"}
                 </Text>
                 <FlatList
                   style={styles.listado}
-                  data={productos}
+                  data={peliculas}
                   renderItem={({ item }) => (
-                    <Producto item={item} eliminarProducto={eliminarProducto} />
+                    
+                      <Pelicula item={item} eliminarPelicula={eliminarPelicula} />
+                    
                   )}
-                  keyExtractor={(producto) => producto.id}
+                  keyExtractor={(pelicula) => pelicula.id}
                 />
               </>
             )}
@@ -97,7 +99,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   contenedor: {
-    backgroundColor: "#C70039",
+    backgroundColor: "#0F4C75",
   },
   titulo: {
     color: "#FFF",
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   },
   btnMostrarForm: {
     padding: 10,
-    backgroundColor: "#C70039",
+    backgroundColor: "#393E46",
     marginVertical: 10,
   },
   textoMostrarForm: {
